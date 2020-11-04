@@ -69,8 +69,6 @@ require (
 	golang.org/x/sys v0.0.0-20210320140829-1e4c9ba3b0c4
 )
 
-replace go.opentelemetry.io/collector => github.com/SumoLogic/opentelemetry-collector v0.13.0
-
 // Replace references to modules that are in this repository with their relateive paths
 // so that we always build with current (latest) version of the source code.
 
