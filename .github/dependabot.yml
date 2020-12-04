@@ -206,6 +206,10 @@ updates:
     schedule:
       interval: "weekly"
   - package-ecosystem: "gomod"
+    directory: "/processor/policysamplingprocessor"
+    schedule:
+      interval: "weekly"
+  - package-ecosystem: "gomod"
     directory: "/processor/resourcedetectionprocessor"
     schedule:
       interval: "weekly"

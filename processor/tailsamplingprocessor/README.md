@@ -2,6 +2,8 @@
 
 Supported pipeline types: traces
 
+_ATTENTION: this processor is deprecated in favor of the combination of the `groupbytrace` + `policysampling` processors_
+
 The tail sampling processor samples traces based on a set of defined policies.
 Today, this processor only works with a single instance of the collector.
 Technically, trace ID aware load balancing could be used to support multiple
