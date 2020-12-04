@@ -49,6 +49,7 @@ processor/groupbyattrsprocessor/         @open-telemetry/collector-contrib-appro
 processor/groupbytraceprocessor/         @open-telemetry/collector-contrib-approvers @jpkrohling
 processor/k8sprocessor/                  @open-telemetry/collector-contrib-approvers @owais @dmitryax @pmm-sumo
 processor/metricstransformprocessor/     @open-telemetry/collector-contrib-approvers @james-bebbington
+processor/policysamplingprocessor/       @open-telemetry/collector-contrib-approvers @jpkrohling
 processor/resourcedetectionprocessor/    @open-telemetry/collector-contrib-approvers @jrcamp @pmm-sumo @anuraaga @james-bebbington
 processor/routingprocessor/              @open-telemetry/collector-contrib-approvers @jpkrohling
 processor/tailsamplingprocessor/         @open-telemetry/collector-contrib-approvers @jpkrohling

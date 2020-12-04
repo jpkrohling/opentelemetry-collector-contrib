@@ -4,6 +4,8 @@
 
 ## v0.16.0
 
+- Add `policysamplingprocessor` based on the `tailsamplingprocessor`, but without holding traces in memory until a decision is made. Useful in combination with the `groupbytrace` processor.
+
 # 🎉 OpenTelemetry Collector Contrib v0.16.0 (Beta) 🎉
 
 The OpenTelemetry Collector Contrib contains everything in the [opentelemetry-collector release](https://github.com/open-telemetry/opentelemetry-collector/releases/tag/v0.16.0) (be sure to check the release notes here as well!). Check out the [Getting Started Guide](https://opentelemetry.io/docs/collector/getting-started/) for deployment and configuration information.
