@@ -28,6 +28,12 @@ type Config struct {
 	// Default: 1_000_000.
 	NumTraces int `mapstructure:"num_traces"`
 
+	// NumEvents sets the buffer size for the internal event machine. The higher the value, the more memory the processor will consume,
+	// with a close relation to the batch sizes. When the event buffer is full, the processor will block new events from being added
+	// to the buffer. This setting directly affects the throughput, so that higher values will deliver higher throughputs.
+	// Default: 100_000.
+	NumEvents int `mapstructure:"num_events"`
+
 	// WaitDuration tells the processor to wait for the specified duration for the trace to be complete.
 	// Default: 1s.
 	WaitDuration time.Duration `mapstructure:"wait_duration"`

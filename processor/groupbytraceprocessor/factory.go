@@ -34,6 +34,7 @@ const (
 var (
 	defaultWaitDuration   = time.Second
 	defaultNumTraces      = 1_000_000
+	defaultNumEvents      = 100_000
 	defaultDiscardOrphans = false
 	defaultStoreOnDisk    = false
 
@@ -60,6 +61,7 @@ func createDefaultConfig() configmodels.Processor {
 			NameVal: string(typeStr),
 		},
 		NumTraces:    defaultNumTraces,
+		NumEvents:    defaultNumEvents,
 		WaitDuration: defaultWaitDuration,
 
 		// not supported for now

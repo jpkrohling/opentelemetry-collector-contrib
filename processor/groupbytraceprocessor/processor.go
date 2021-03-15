@@ -57,7 +57,7 @@ var _ component.TracesProcessor = (*groupByTraceProcessor)(nil)
 // newGroupByTraceProcessor returns a new processor.
 func newGroupByTraceProcessor(logger *zap.Logger, st storage, nextConsumer consumer.TracesConsumer, config Config) *groupByTraceProcessor {
 	// the event machine will buffer up to N concurrent events before blocking
-	eventMachine := newEventMachine(logger, 10000)
+	eventMachine := newEventMachine(logger, config.NumEvents)
 
 	sp := &groupByTraceProcessor{
 		logger:       logger,
