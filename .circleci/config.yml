@@ -160,24 +160,54 @@ workflows:
   stability-tests:
     when: << pipeline.parameters.run-stability-tests >>
     jobs:
-      - checkout-commit
+      - checkout-commit:
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /.*/
       - setup:
           requires:
             - checkout-commit
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /.*/
       - cross-compile:
           requires:
             - setup
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /.*/
       - run-stability-tests:
           requires:
             - cross-compile
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /.*/
       - publish-dev:
           requires:
             - run-stability-tests
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /.*/
       - run-tracing-tests:
           repo: opentelemetry-collector-dev
           tag: ${CIRCLE_SHA1}
           requires:
             - publish-dev
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /.*/
       - publish-stable:
           requires:
             - run-tracing-tests
@@ -246,6 +276,11 @@ workflows:
             - windows-msi
             - deb-package
             - rpm-package
+          filters:
+            branches:
+              only: /.*/
+            tags:
+              only: /.*/
       - publish-stable:
           requires:
             - lint
@@ -474,10 +509,15 @@ jobs:
       - run:
           name: Trigger stability tests job
           command: |
-            curl -f -X POST "https://circleci.com/api/v2/project/github/SumoLogic/${CIRCLE_PROJECT_REPONAME}/pipeline?circle-token=${CIRCLE_API_TOKEN}" \
+            PARAM='"branch": "'"${CIRLCE_BRANCH}"'"'
+            if [ -z "$CIRLCE_BRANCH" ]; then
+              PARAM='"tag": "'"${CIRCLE_TAG}"'"'
+            fi
+            curl -f -X POST "https://circleci.com/api/v2/project/github/SumoLogic/${CIRCLE_PROJECT_REPONAME}/pipeline" \
                 -H 'Content-Type: application/json' \
                 -H 'Accept: application/json' \
-                -d '{"parameters": {"run-build-publish": false, "run-stability-tests": true, "collector-sha": "'"${CIRCLE_SHA1}"'"}, "branch": "'"${CIRCLE_BRANCH}"'"}'
+                -H "Circle-Token: ${CIRCLE_API_TOKEN}" \
+                -d '{"parameters": {"run-build-publish": false, "run-stability-tests": true, "collector-sha": "'"${CIRCLE_SHA1}"'"}, '"${PARAM}"'}'
 
   checkout-commit:
     executor: golang
