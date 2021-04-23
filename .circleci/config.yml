@@ -90,7 +90,7 @@ commands:
   save_module_cache:
     steps:
       - save_cache:
-          key: cimg-go-pkg-mod-{{ arch }}-{{ checksum "go.sum" }}-{{ checksum "internal/tools/go.sum" }}
+          key: cimg-go-pkg-mod-{{ arch }}-{{ checksum "go.sum" }}-{{ checksum "internal/tools/go.sum" }}-1.15
           paths:
             - "/home/circleci/go/pkg/mod"
 
@@ -101,7 +101,7 @@ commands:
           command: mkdir -p ~/go/pkg/mod
       - restore_cache: # restores saved cache if no changes are detected since last run
           keys:
-            - cimg-go-pkg-mod-{{ arch }}-{{ checksum "go.sum" }}-{{ checksum "internal/tools/go.sum" }}
+            - cimg-go-pkg-mod-{{ arch }}-{{ checksum "go.sum" }}-{{ checksum "internal/tools/go.sum" }}-1.15
 
   install_fluentbit:
     steps:
@@ -264,7 +264,7 @@ workflows:
             - cross-compile
           filters:
             branches:
-              only: /main|release|tracing\/.+/
+              only: /main|release.+|tracing.+/
             tags:
               ignore: /.*/
       - integration-tests:
@@ -403,7 +403,7 @@ jobs:
 
   publish-check:
     docker:
-      - image: cimg/go:1.14
+      - image: cimg/go:1.15
     steps:
       - attach_to_workspace
       - setup_remote_docker
