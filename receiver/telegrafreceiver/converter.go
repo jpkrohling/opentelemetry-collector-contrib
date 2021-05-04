@@ -81,7 +81,7 @@ func (mc metricConverter) Convert(m telegraf.Metric) (pdata.Metrics, error) {
 				pm = newIntGauge(f.Key, int64(v), tim, mc.separateField)
 
 			default:
-				mc.logger.Warn(
+				mc.logger.Debug(
 					"Unsupported data type when handling telegraf.Gauge",
 					zap.String("type", fmt.Sprintf("%T", v)),
 					zap.String("key", f.Key),
@@ -108,7 +108,7 @@ func (mc metricConverter) Convert(m telegraf.Metric) (pdata.Metrics, error) {
 				pm = newIntGauge(f.Key, int64(v), tim, mc.separateField)
 
 			default:
-				mc.logger.Warn(
+				mc.logger.Debug(
 					"Unsupported data type when handling telegraf.Untyped",
 					zap.String("type", fmt.Sprintf("%T", v)),
 					zap.String("key", f.Key),
