@@ -6,7 +6,7 @@ require (
 	github.com/Shopify/sarama v1.29.1
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/kafkaexporter v0.35.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/common v0.35.0
-	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/scraperhelper v0.35.0
+	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/scraperhelper v0.36.0
 	github.com/stretchr/testify v1.7.0
 	go.opentelemetry.io/collector v0.35.1-0.20210913155934-36e0bbaf40b2
 	go.opentelemetry.io/collector/model v0.35.1-0.20210913155934-36e0bbaf40b2
