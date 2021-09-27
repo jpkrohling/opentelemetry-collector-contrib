@@ -7,7 +7,7 @@ require (
 	github.com/google/uuid v1.3.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/proxy v0.35.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/aws/xray v0.35.0
-	github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal v0.35.0
+	github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal v0.36.0
 	github.com/stretchr/testify v1.7.0
 	go.opentelemetry.io/collector v0.35.1-0.20210913155934-36e0bbaf40b2
 	go.opentelemetry.io/collector/model v0.35.1-0.20210913155934-36e0bbaf40b2
