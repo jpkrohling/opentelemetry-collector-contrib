@@ -13,7 +13,7 @@ require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/zipkinexporter v0.35.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal v0.35.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/splunk v0.35.0
-	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/carbonreceiver v0.35.0
+	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/carbonreceiver v0.36.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/jaegerreceiver v0.35.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/opencensusreceiver v0.35.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver v0.35.0
