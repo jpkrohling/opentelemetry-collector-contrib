@@ -47,6 +47,7 @@ func TestLoadConfig(t *testing.T) {
 			TCPAddr: confignet.TCPAddr{
 				Endpoint: "localhost:13",
 			},
+			MetricsHealthCheck: DefaultMetricsHealthCheckSettings(),
 		},
 		ext1)
 

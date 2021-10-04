@@ -16,10 +16,12 @@ package healthcheckextension
 
 import (
 	"context"
+	"go.opencensus.io/stats/view"
 	"net"
 	"net/http"
 	"runtime"
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
@@ -31,11 +33,12 @@ import (
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/testutil"
 )
 
-func TestHealthCheckExtensionUsage(t *testing.T) {
+func TestHealthCheckExtensionUsageWithoutMetricsHealthCheck(t *testing.T) {
 	config := Config{
 		TCPAddr: confignet.TCPAddr{
 			Endpoint: testutil.GetAvailableLocalAddress(t),
 		},
+		MetricsHealthCheck: DefaultMetricsHealthCheckSettings(),
 	}
 
 	hcExt := newServer(config, zap.NewNop())
@@ -68,6 +71,70 @@ func TestHealthCheckExtensionUsage(t *testing.T) {
 	require.Equal(t, http.StatusServiceUnavailable, resp2.StatusCode)
 }
 
+func TestHealthCheckExtensionUsageWithMetricsHealthCheck(t *testing.T) {
+	config := Config{
+		TCPAddr: confignet.TCPAddr{
+			Endpoint: testutil.GetAvailableLocalAddress(t),
+		},
+		MetricsHealthCheck: metricsHealthCheckSettings{
+			Enabled:                  true,
+			Interval:                 "5m",
+			ExporterFailureThreshold: 1,
+		},
+	}
+
+	hcExt := newServer(config, zap.NewNop())
+	require.NotNil(t, hcExt)
+
+	require.NoError(t, hcExt.Start(context.Background(), componenttest.NewNopHost()))
+	t.Cleanup(func() { require.NoError(t, hcExt.Shutdown(context.Background())) })
+
+	// Give a chance for the server goroutine to run.
+	runtime.Gosched()
+
+	newView := view.View{Name: exporterFailureView}
+
+	currentTime := time.Now()
+	vd1 := &view.Data{
+		View:  &newView,
+		Start: currentTime.Add(-2 * time.Minute),
+		End:   currentTime,
+		Rows:  nil,
+	}
+	vd2 := &view.Data{
+		View:  &newView,
+		Start: currentTime.Add(-1 * time.Minute),
+		End:   currentTime,
+		Rows:  nil,
+	}
+
+	client := &http.Client{}
+	url := "http://" + config.TCPAddr.Endpoint
+	resp0, err := client.Get(url)
+	require.NoError(t, err)
+	defer resp0.Body.Close()
+
+	hcExt.exporter.exporterFailureQueue = append(hcExt.exporter.exporterFailureQueue, vd1)
+	require.NoError(t, hcExt.Ready())
+	resp1, err := client.Get(url)
+	require.NoError(t, err)
+	defer resp1.Body.Close()
+	require.Equal(t, http.StatusOK, resp1.StatusCode)
+
+	require.NoError(t, hcExt.NotReady())
+	resp2, err := client.Get(url)
+	require.NoError(t, err)
+	defer resp2.Body.Close()
+	require.Equal(t, http.StatusInternalServerError, resp2.StatusCode)
+
+	hcExt.exporter.exporterFailureQueue = append(hcExt.exporter.exporterFailureQueue, vd2)
+	require.NoError(t, hcExt.Ready())
+	resp3, err := client.Get(url)
+	require.NoError(t, err)
+	defer resp3.Body.Close()
+	require.Equal(t, http.StatusInternalServerError, resp3.StatusCode)
+}
+
 func TestHealthCheckExtensionPortAlreadyInUse(t *testing.T) {
 	endpoint := testutil.GetAvailableLocalAddress(t)
 
@@ -95,6 +162,7 @@ func TestHealthCheckMultipleStarts(t *testing.T) {
 		TCPAddr: confignet.TCPAddr{
 			Endpoint: testutil.GetAvailableLocalAddress(t),
 		},
+		MetricsHealthCheck: DefaultMetricsHealthCheckSettings(),
 	}
 
 	hcExt := newServer(config, zap.NewNop())
@@ -112,6 +180,7 @@ func TestHealthCheckMultipleShutdowns(t *testing.T) {
 		TCPAddr: confignet.TCPAddr{
 			Endpoint: testutil.GetAvailableLocalAddress(t),
 		},
+		MetricsHealthCheck: DefaultMetricsHealthCheckSettings(),
 	}
 
 	hcExt := newServer(config, zap.NewNop())
@@ -127,6 +196,7 @@ func TestHealthCheckShutdownWithoutStart(t *testing.T) {
 		TCPAddr: confignet.TCPAddr{
 			Endpoint: testutil.GetAvailableLocalAddress(t),
 		},
+		MetricsHealthCheck: DefaultMetricsHealthCheckSettings(),
 	}
 
 	hcExt := newServer(config, zap.NewNop())

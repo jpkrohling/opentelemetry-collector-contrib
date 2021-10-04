@@ -46,6 +46,7 @@ func createDefaultConfig() config.Extension {
 		TCPAddr: confignet.TCPAddr{
 			Endpoint: defaultEndpoint,
 		},
+		MetricsHealthCheck: DefaultMetricsHealthCheckSettings(),
 	}
 }
 
