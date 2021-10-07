@@ -64,7 +64,7 @@ func (hc *healthCheckExtension) Start(_ context.Context, host component.Host) er
 		return err
 	}
 
-	if !hc.config.MetricsHealthCheck.Enabled {
+	if !hc.config.CheckCollectorPipeline.Enabled {
 		// Mount HC handler
 		hc.server.Handler = hc.state.Handler()
 		hc.stopCh = make(chan struct{})
@@ -82,7 +82,7 @@ func (hc *healthCheckExtension) Start(_ context.Context, host component.Host) er
 			return err
 		}
 
-		interval, err := time.ParseDuration(hc.config.MetricsHealthCheck.Interval)
+		interval, err := time.ParseDuration(hc.config.CheckCollectorPipeline.Interval)
 		if err != nil {
 			return err
 		}
@@ -93,6 +93,7 @@ func (hc *healthCheckExtension) Start(_ context.Context, host component.Host) er
 		hc.stopCh = make(chan struct{})
 		go func() {
 			defer close(hc.stopCh)
+			defer view.UnregisterExporter(hc.exporter)
 
 			go func() {
 				for {
@@ -122,7 +123,7 @@ func (hc *healthCheckExtension) initExporter() error {
 	return nil
 }
 
-// new handler function used for metrics failure health check
+// new handler function used for check collector pipeline
 func (hc *healthCheckExtension) handler() http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, _ *http.Request) {
 		if hc.check() && hc.state.Get().String() == "ready" {
@@ -134,7 +135,7 @@ func (hc *healthCheckExtension) handler() http.Handler {
 }
 
 func (hc *healthCheckExtension) check() bool {
-	return hc.exporter.checkHealthStatus(hc.config.MetricsHealthCheck.ExporterFailureThreshold)
+	return hc.exporter.checkHealthStatus(hc.config.CheckCollectorPipeline.ExporterFailureThreshold)
 }
 
 func (hc *healthCheckExtension) Shutdown(context.Context) error {

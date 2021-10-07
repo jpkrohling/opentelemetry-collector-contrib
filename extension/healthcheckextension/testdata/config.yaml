@@ -2,7 +2,7 @@ extensions:
   health_check:
   health_check/1:
     endpoint: "localhost:13"
-    metrics_health_check:
+    check_collector_pipeline:
       enabled: false
       interval: "5m"
       exporter_failure_threshold: 5

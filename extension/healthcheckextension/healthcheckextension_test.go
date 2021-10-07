@@ -33,12 +33,12 @@ import (
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/testutil"
 )
 
-func TestHealthCheckExtensionUsageWithoutMetricsHealthCheck(t *testing.T) {
+func TestHealthCheckExtensionUsageWithoutCheckCollectorPipeline(t *testing.T) {
 	config := Config{
 		TCPAddr: confignet.TCPAddr{
 			Endpoint: testutil.GetAvailableLocalAddress(t),
 		},
-		MetricsHealthCheck: DefaultMetricsHealthCheckSettings(),
+		CheckCollectorPipeline: defaultCheckCollectorPipelineSettings(),
 	}
 
 	hcExt := newServer(config, zap.NewNop())
@@ -71,12 +71,12 @@ func TestHealthCheckExtensionUsageWithoutMetricsHealthCheck(t *testing.T) {
 	require.Equal(t, http.StatusServiceUnavailable, resp2.StatusCode)
 }
 
-func TestHealthCheckExtensionUsageWithMetricsHealthCheck(t *testing.T) {
+func TestHealthCheckExtensionUsageWithCheckCollectorPipeline(t *testing.T) {
 	config := Config{
 		TCPAddr: confignet.TCPAddr{
 			Endpoint: testutil.GetAvailableLocalAddress(t),
 		},
-		MetricsHealthCheck: metricsHealthCheckSettings{
+		CheckCollectorPipeline: checkCollectorPipelineSettings{
 			Enabled:                  true,
 			Interval:                 "5m",
 			ExporterFailureThreshold: 1,
@@ -162,7 +162,7 @@ func TestHealthCheckMultipleStarts(t *testing.T) {
 		TCPAddr: confignet.TCPAddr{
 			Endpoint: testutil.GetAvailableLocalAddress(t),
 		},
-		MetricsHealthCheck: DefaultMetricsHealthCheckSettings(),
+		CheckCollectorPipeline: defaultCheckCollectorPipelineSettings(),
 	}
 
 	hcExt := newServer(config, zap.NewNop())
@@ -180,7 +180,7 @@ func TestHealthCheckMultipleShutdowns(t *testing.T) {
 		TCPAddr: confignet.TCPAddr{
 			Endpoint: testutil.GetAvailableLocalAddress(t),
 		},
-		MetricsHealthCheck: DefaultMetricsHealthCheckSettings(),
+		CheckCollectorPipeline: defaultCheckCollectorPipelineSettings(),
 	}
 
 	hcExt := newServer(config, zap.NewNop())
@@ -196,7 +196,7 @@ func TestHealthCheckShutdownWithoutStart(t *testing.T) {
 		TCPAddr: confignet.TCPAddr{
 			Endpoint: testutil.GetAvailableLocalAddress(t),
 		},
-		MetricsHealthCheck: DefaultMetricsHealthCheckSettings(),
+		CheckCollectorPipeline: defaultCheckCollectorPipelineSettings(),
 	}
 
 	hcExt := newServer(config, zap.NewNop())

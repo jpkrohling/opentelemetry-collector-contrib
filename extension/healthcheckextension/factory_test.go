@@ -35,7 +35,7 @@ func TestFactory_CreateDefaultConfig(t *testing.T) {
 		TCPAddr: confignet.TCPAddr{
 			Endpoint: defaultEndpoint,
 		},
-		MetricsHealthCheck: DefaultMetricsHealthCheckSettings(),
+		CheckCollectorPipeline: defaultCheckCollectorPipelineSettings(),
 	}, cfg)
 
 	assert.NoError(t, configtest.CheckConfigStruct(cfg))
