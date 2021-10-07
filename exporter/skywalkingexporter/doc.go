@@ -12,18 +12,5 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-//go:build darwin || freebsd
-// +build darwin freebsd
-
-package processesscraper
-
-import (
-	"github.com/shirou/gopsutil/load"
-	"go.opentelemetry.io/collector/model/pdata"
-)
-
-const unixSystemSpecificMetricsLen = 0
-
-func appendUnixSystemSpecificProcessesMetrics(metrics pdata.MetricSlice, startTime pdata.Timestamp, now pdata.Timestamp, misc *load.MiscStat) error {
-	return nil
-}
+// Package skywalkingexporter exports data by using SkyWalking data collect protocol to a gPRC endpoint.
+package skywalkingexporter
