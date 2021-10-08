@@ -16,7 +16,6 @@ package healthcheckextension
 
 import (
 	"context"
-	"go.opencensus.io/stats/view"
 	"net"
 	"net/http"
 	"runtime"
@@ -25,6 +24,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"go.opencensus.io/stats/view"
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/component/componenttest"
 	"go.opentelemetry.io/collector/config/confignet"
