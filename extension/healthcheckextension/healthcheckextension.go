@@ -72,15 +72,13 @@ func (hc *healthCheckExtension) Start(_ context.Context, host component.Host) er
 			defer close(hc.stopCh)
 
 			// The listener ownership goes to the server.
-			if err := hc.server.Serve(ln); err != http.ErrServerClosed && err != nil {
+			if err = hc.server.Serve(ln); err != http.ErrServerClosed && err != nil {
 				host.ReportFatalError(err)
 			}
 		}()
 	} else {
-		err = hc.initExporter()
-		if err != nil {
-			return err
-		}
+		hc.exporter = newHealthCheckExporter()
+		view.RegisterExporter(hc.exporter)
 
 		interval, err := time.ParseDuration(hc.config.CheckCollectorPipeline.Interval)
 		if err != nil {
@@ -106,20 +104,13 @@ func (hc *healthCheckExtension) Start(_ context.Context, host component.Host) er
 				}
 			}()
 
-			if err := hc.server.Serve(ln); err != http.ErrServerClosed && err != nil {
+			if err = hc.server.Serve(ln); err != http.ErrServerClosed && err != nil {
 				host.ReportFatalError(err)
 			}
 
 		}()
 	}
 
-	return nil
-}
-
-// initExporter function could register the customized exporter
-func (hc *healthCheckExtension) initExporter() error {
-	hc.exporter = newHealthCheckExporter()
-	view.RegisterExporter(hc.exporter)
 	return nil
 }
 
