@@ -4,8 +4,8 @@ Health Check extension enables an HTTP url that can be probed to check the
 status of the OpenTelemetry Collector. This extension can be used as a
 liveness and/or readiness probe on Kubernetes.
 
-There is an optional configuration `check_collector_pipeline` which allows 
-customers to enable health check for the collector pipeline. This feature can 
+There is an optional configuration `check_collector_pipeline` which allows
+users to enable health check for the collector pipeline. This feature can 
 monitor the number of times that components failed send data to the destinations. 
 It only supports monitoring exporter failures and will support receivers and 
 processors in the future.

@@ -77,6 +77,7 @@ func (hc *healthCheckExtension) Start(_ context.Context, host component.Host) er
 			}
 		}()
 	} else {
+		// collector pipeline health check
 		hc.exporter = newHealthCheckExporter()
 		view.RegisterExporter(hc.exporter)
 
@@ -85,7 +86,8 @@ func (hc *healthCheckExtension) Start(_ context.Context, host component.Host) er
 			return err
 		}
 
-		ticker := time.NewTicker(1 * time.Minute)
+		// ticker used by collector pipeline health check for rotation
+		ticker := time.NewTicker(time.Second)
 
 		hc.server.Handler = hc.handler()
 		hc.stopCh = make(chan struct{})
