@@ -48,11 +48,6 @@ func (hc *healthCheckExtension) Start(_ context.Context, host component.Host) er
 		err error
 	)
 
-	err = hc.config.Validate()
-	if err != nil {
-		return err
-	}
-
 	if hc.config.Port != 0 && hc.config.TCPAddr.Endpoint == defaultEndpoint {
 		hc.logger.Warn("`Port` is deprecated, use `Endpoint` instead")
 		portStr := ":" + strconv.Itoa(int(hc.config.Port))
