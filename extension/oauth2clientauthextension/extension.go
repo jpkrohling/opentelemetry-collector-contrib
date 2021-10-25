@@ -37,8 +37,7 @@ type ClientCredentialsAuthenticator struct {
 
 // ClientCredentialsAuthenticator implements both HTTPClientAuth and GRPCClientAuth
 var (
-	_ configauth.HTTPClientAuthenticator = (*ClientCredentialsAuthenticator)(nil)
-	_ configauth.GRPCClientAuthenticator = (*ClientCredentialsAuthenticator)(nil)
+	_ configauth.ClientAuthenticator = (*ClientCredentialsAuthenticator)(nil)
 )
 
 func newClientCredentialsExtension(cfg *Config, logger *zap.Logger) (*ClientCredentialsAuthenticator, error) {

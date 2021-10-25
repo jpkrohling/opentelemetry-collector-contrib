@@ -24,7 +24,10 @@ import (
 	"google.golang.org/grpc/credentials"
 )
 
-var _ credentials.PerRPCCredentials = (*PerRPCAuth)(nil)
+var (
+	_ credentials.PerRPCCredentials  = (*PerRPCAuth)(nil)
+	_ configauth.ClientAuthenticator = (*BearerTokenAuth)(nil)
+)
 
 // PerRPCAuth is a gRPC credentials.PerRPCCredentials implementation that returns an 'authorization' header.
 type PerRPCAuth struct {
@@ -46,8 +49,6 @@ type BearerTokenAuth struct {
 	tokenString string
 	logger      *zap.Logger
 }
-
-var _ configauth.GRPCClientAuthenticator = (*BearerTokenAuth)(nil)
 
 func newBearerTokenAuth(cfg *Config, logger *zap.Logger) *BearerTokenAuth {
 	return &BearerTokenAuth{
