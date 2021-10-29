@@ -338,7 +338,7 @@ require (
 	go.etcd.io/bbolt v1.3.6 // indirect
 	go.mongodb.org/atlas v0.13.0 // indirect
 	go.opencensus.io v0.23.0 // indirect
-	go.opentelemetry.io/collector/model v0.37.1-0.20211026180946-46c8e2290e45 // indirect
+	go.opentelemetry.io/collector/model v0.38.0 // indirect
 	go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.25.0 // indirect
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.25.0 // indirect
 	go.opentelemetry.io/contrib/zpages v0.25.0 // indirect
@@ -630,3 +630,7 @@ replace github.com/open-telemetry/opentelemetry-collector-contrib/exporter/stack
 exclude github.com/StackExchange/wmi v1.2.0
 
 retract v0.37.0 // Contains dependencies on v0.36.0 components, which should have been updated to v0.37.0.
+
+replace go.opentelemetry.io/collector => /home/jpkroehling/Projects/src/github.com/open-telemetry/opentelemetry-collector
+
+replace go.opentelemetry.io/collector/model => /home/jpkroehling/Projects/src/github.com/open-telemetry/opentelemetry-collector/model
