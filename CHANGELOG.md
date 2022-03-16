@@ -14,6 +14,7 @@
 
 ### 💡 Enhancements 💡
 
+- `riakreceiver`: Added implementation of Riak Metric Receiver (#8548)
 - `k8seventsreceiver`: Add Api_version and resource_version (#8539)
 - `cmd/mdatagen`: Add resource attributes definition to metadata.yaml and move `pdata.Metrics` creation to the
   generated code (#5270) 
