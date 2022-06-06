@@ -14,7 +14,7 @@ require (
 
 require (
 	google.golang.org/genproto v0.0.0-20220414192740-2d67ff6cf2b4
-	google.golang.org/grpc v1.46.0
+	google.golang.org/grpc v1.47.0
 )
 
 require (
