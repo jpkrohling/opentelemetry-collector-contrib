@@ -20,7 +20,7 @@ require (
 
 require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal v0.50.0
-	go.opentelemetry.io/collector/semconv v0.50.0
+	go.opentelemetry.io/collector/semconv v0.53.0
 	gopkg.in/yaml.v2 v2.4.0
 )
 
