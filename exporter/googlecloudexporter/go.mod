@@ -12,7 +12,7 @@ require (
 	go.opencensus.io v0.23.0
 	go.opentelemetry.io/collector v0.50.0
 	go.opentelemetry.io/collector/pdata v0.50.0
-	go.opentelemetry.io/collector/semconv v0.50.0
+	go.opentelemetry.io/collector/semconv v0.53.0
 	google.golang.org/api v0.76.0
 	google.golang.org/genproto v0.0.0-20220414192740-2d67ff6cf2b4
 	google.golang.org/grpc v1.46.0
