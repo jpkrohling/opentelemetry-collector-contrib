@@ -61,6 +61,7 @@ func createDefaultConfig() config.Exporter {
 
 func createLogsExporter(ctx context.Context, set component.ExporterCreateSettings, config config.Exporter) (component.LogsExporter, error) {
 	expCfg := config.(*Config)
+	set.Logger.Info("Attention: this is a custom Loki Exporter with extra logging. It should be used only for debugging purposes, as part of #13332")
 
 	if err := expCfg.validate(); err != nil {
 		return nil, err

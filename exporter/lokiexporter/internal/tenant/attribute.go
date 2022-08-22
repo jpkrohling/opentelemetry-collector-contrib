@@ -18,20 +18,27 @@ import (
 	"context"
 
 	"go.opentelemetry.io/collector/pdata/plog"
+	"go.uber.org/zap"
 )
 
 var _ Source = (*AttributeTenantSource)(nil)
 
 type AttributeTenantSource struct {
-	Value string
+	Value  string
+	Logger *zap.Logger
 }
 
 func (ts *AttributeTenantSource) GetTenant(_ context.Context, logs plog.Logs) (string, error) {
+	ret := ""
 	for i := 0; i < logs.ResourceLogs().Len(); i++ {
 		rl := logs.ResourceLogs().At(i)
 		if v, found := rl.Resource().Attributes().Get(ts.Value); found {
-			return v.StringVal(), nil
+			tenant := v.StringVal()
+			if len(ret) > 0 && ret != tenant {
+				ts.Logger.Info("found a different tenant in resource attribute", zap.String("tenant", ret), zap.Int("index", i))
+			}
+			ret = tenant
 		}
 	}
-	return "", nil
+	return ret, nil
 }

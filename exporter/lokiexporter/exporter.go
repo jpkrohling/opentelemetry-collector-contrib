@@ -96,7 +96,8 @@ func newExporter(config *Config, settings component.TelemetrySettings) *lokiExpo
 		}
 	case "attributes":
 		lokiexporter.tenantSource = &tenant.AttributeTenantSource{
-			Value: config.Tenant.Value,
+			Logger: settings.Logger,
+			Value:  config.Tenant.Value,
 		}
 	}
 

@@ -20,11 +20,15 @@ import (
 
 	"github.com/stretchr/testify/assert"
 	"go.opentelemetry.io/collector/pdata/plog"
+	"go.uber.org/zap"
 )
 
 func TestAttributeTenantSourceSuccess(t *testing.T) {
 	// prepare
-	ts := &AttributeTenantSource{Value: "tenant.id"}
+	ts := &AttributeTenantSource{
+		Logger: zap.NewNop(),
+		Value:  "tenant.id",
+	}
 
 	logs := plog.NewLogs()
 	logs.ResourceLogs().AppendEmpty() // who's on first
@@ -41,7 +45,10 @@ func TestAttributeTenantSourceSuccess(t *testing.T) {
 
 func TestAttributeTenantSourceNotFound(t *testing.T) {
 	// prepare
-	ts := &AttributeTenantSource{Value: "tenant.id"}
+	ts := &AttributeTenantSource{
+		Logger: zap.NewNop(),
+		Value:  "tenant.id",
+	}
 
 	logs := plog.NewLogs()
 	logs.ResourceLogs().AppendEmpty() // who's on first
