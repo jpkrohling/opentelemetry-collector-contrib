@@ -13,7 +13,7 @@ require (
 	go.opentelemetry.io/collector v0.58.1-0.20220830230326-72011ca22dff
 	go.opentelemetry.io/collector/pdata v0.58.1-0.20220830230326-72011ca22dff
 	go.opentelemetry.io/collector/semconv v0.58.1-0.20220830230326-72011ca22dff
-	google.golang.org/api v0.94.0
+	google.golang.org/api v0.95.0
 	google.golang.org/genproto v0.0.0-20220804142021-4e6b2dfa6612
 	google.golang.org/grpc v1.49.0
 	google.golang.org/protobuf v1.28.1
