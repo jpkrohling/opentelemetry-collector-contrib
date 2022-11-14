@@ -1435,8 +1435,9 @@ go.opentelemetry.io/collector/extension/zpagesextension v0.64.0/go.mod h1:lNcphx
 go.opentelemetry.io/collector/pdata v0.56.0/go.mod h1:mYcCREWiIJyHss0dbU+GSiz2tmGZ6u09vtfkKTciog4=
 go.opentelemetry.io/collector/pdata v0.57.2/go.mod h1:RU9I8lwBUxucwOsSYzHEcHi15M9QaX78hgQ2PRdSxV0=
 go.opentelemetry.io/collector/pdata v0.63.0/go.mod h1:IzvXUGQml2mrnvdb8zIlEW3qQs9oFLdD2hLwJdZ+pek=
-go.opentelemetry.io/collector/pdata v0.64.0 h1:Mx0ZawbR5F0WyUPCGB1EYsCJYsEj0iJBqX+hm3CFH40=
 go.opentelemetry.io/collector/pdata v0.64.0/go.mod h1:IzvXUGQml2mrnvdb8zIlEW3qQs9oFLdD2hLwJdZ+pek=
+go.opentelemetry.io/collector/pdata v0.64.1 h1:8E06uHr0nnenGftFwhwdenA88QhVnF4dJam+qVXgdVg=
+go.opentelemetry.io/collector/pdata v0.64.1/go.mod h1:IzvXUGQml2mrnvdb8zIlEW3qQs9oFLdD2hLwJdZ+pek=
 go.opentelemetry.io/collector/processor/batchprocessor v0.64.0 h1:QHLmr0Mw3j9EwbmIaQELjubCZPDTfWINhUjUesnm/xM=
 go.opentelemetry.io/collector/processor/batchprocessor v0.64.0/go.mod h1:ZZtDQ1M9szgmwa0aT/R8JteB2zadwogylE9p3Sr64qU=
 go.opentelemetry.io/collector/processor/memorylimiterprocessor v0.64.0 h1:1BvrtJiYcaupu2I10LDQhjbi+X3F9WAF/Ai7GvDLNG4=
