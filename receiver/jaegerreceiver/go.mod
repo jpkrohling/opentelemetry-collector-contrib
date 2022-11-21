@@ -13,7 +13,7 @@ require (
 	go.opentelemetry.io/collector/pdata v0.64.0
 	go.opentelemetry.io/collector/semconv v0.64.0
 	go.uber.org/multierr v1.8.0
-	google.golang.org/grpc v1.50.1
+	google.golang.org/grpc v1.51.0
 )
 
 require (
