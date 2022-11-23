@@ -8,7 +8,7 @@ require (
 	github.com/aws/aws-sdk-go-v2/credentials v1.13.0
 	github.com/aws/aws-sdk-go-v2/service/sts v1.17.2
 	github.com/stretchr/testify v1.8.1
-	go.opentelemetry.io/collector v0.65.0
+	go.opentelemetry.io/collector v0.66.0
 	go.opentelemetry.io/collector/component v0.65.0
 	go.uber.org/zap v1.23.0
 	google.golang.org/grpc v1.51.0
