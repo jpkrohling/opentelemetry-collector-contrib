@@ -30,7 +30,7 @@ require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/kafkaexporter v0.66.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/loadbalancingexporter v0.66.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/logzioexporter v0.66.0
-	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/lokiexporter v0.66.0
+	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/lokiexporter v0.0.0-00010101000000-000000000000
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/mezmoexporter v0.66.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/opencensusexporter v0.66.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/exporter/parquetexporter v0.66.0
@@ -133,7 +133,7 @@ require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/postgresqlreceiver v0.66.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusexecreceiver v0.66.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/prometheusreceiver v0.66.0
-	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/promtailreceiver v0.66.0
+	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/promtailreceiver v0.0.0-00010101000000-000000000000
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/pulsarreceiver v0.66.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/purefareceiver v0.66.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/rabbitmqreceiver v0.66.0
@@ -160,7 +160,7 @@ require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/windowsperfcountersreceiver v0.66.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/zipkinreceiver v0.66.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/receiver/zookeeperreceiver v0.66.0
-	github.com/prometheus/common v0.37.0
+	github.com/prometheus/common v0.39.0
 	github.com/prometheus/prometheus v0.40.5
 	github.com/stretchr/testify v1.8.1
 	go.opentelemetry.io/collector v0.66.1-0.20221202005155-1c54042beb70
@@ -646,8 +646,8 @@ require (
 	golang.org/x/crypto v0.3.0 // indirect
 	golang.org/x/exp v0.0.0-20221205204356-47842c84f3db // indirect
 	golang.org/x/mod v0.7.0 // indirect
-	golang.org/x/net v0.3.0 // indirect
-	golang.org/x/oauth2 v0.2.0 // indirect
+	golang.org/x/net v0.4.0 // indirect
+	golang.org/x/oauth2 v0.3.0 // indirect
 	golang.org/x/sync v0.1.0 // indirect
 	golang.org/x/term v0.3.0 // indirect
 	golang.org/x/text v0.5.0 // indirect
