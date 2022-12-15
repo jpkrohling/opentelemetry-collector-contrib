@@ -4,14 +4,14 @@ go 1.18
 
 require (
 	github.com/influxdata/influxdb-observability/common v0.2.32
-	github.com/influxdata/influxdb-observability/otel2influx v0.2.32
+	github.com/influxdata/influxdb-observability/otel2influx v0.2.33
 	github.com/influxdata/line-protocol/v2 v2.2.1
 	github.com/stretchr/testify v1.8.1
 	go.opentelemetry.io/collector v0.66.1-0.20221202005155-1c54042beb70
 	go.opentelemetry.io/collector/component v0.66.1-0.20221202005155-1c54042beb70
 	go.opentelemetry.io/collector/confmap v0.0.0-20221201172708-2bdff61fa52a
 	go.opentelemetry.io/collector/consumer v0.66.1-0.20221202005155-1c54042beb70
-	go.opentelemetry.io/collector/pdata v0.66.1-0.20221202005155-1c54042beb70
+	go.opentelemetry.io/collector/pdata v1.0.0-rc1
 	go.uber.org/zap v1.24.0
 )
 
