@@ -10,7 +10,7 @@ require (
 	go.opentelemetry.io/collector/component v0.70.1-0.20230207214007-faf5a578038f
 	go.opentelemetry.io/collector/confmap v0.70.1-0.20230207214007-faf5a578038f
 	go.uber.org/multierr v1.9.0
-	google.golang.org/grpc v1.52.3
+	google.golang.org/grpc v1.53.0
 )
 
 require (
