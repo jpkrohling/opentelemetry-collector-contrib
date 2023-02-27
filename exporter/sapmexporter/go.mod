@@ -9,7 +9,7 @@ require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/pkg/batchperresourceattr v0.70.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/pkg/translator/jaeger v0.70.0
 	github.com/signalfx/sapm-proto v0.12.0
-	github.com/stretchr/testify v1.8.1
+	github.com/stretchr/testify v1.8.2
 	go.opentelemetry.io/collector v0.70.1-0.20230207214007-faf5a578038f
 	go.opentelemetry.io/collector/component v0.70.1-0.20230207214007-faf5a578038f
 	go.opentelemetry.io/collector/confmap v0.70.1-0.20230207214007-faf5a578038f
