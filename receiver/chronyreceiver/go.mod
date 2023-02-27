@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/facebook/time v0.0.0-20220713225404-f7a0d7702d50
-	github.com/stretchr/testify v1.8.1
+	github.com/stretchr/testify v1.8.2
 	github.com/tilinna/clock v1.1.0
 	go.opentelemetry.io/collector v0.70.1-0.20230207214007-faf5a578038f
 	go.opentelemetry.io/collector/component v0.70.1-0.20230207214007-faf5a578038f
