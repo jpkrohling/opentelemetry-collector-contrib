@@ -42,7 +42,7 @@ require (
 	go.opentelemetry.io/collector/processor/batchprocessor v0.70.1-0.20230207214007-faf5a578038f
 	go.opentelemetry.io/collector/processor/memorylimiterprocessor v0.70.1-0.20230207214007-faf5a578038f
 	go.opentelemetry.io/collector/receiver/otlpreceiver v0.70.1-0.20230207214007-faf5a578038f
-	go.opentelemetry.io/collector/semconv v0.70.1-0.20230207214007-faf5a578038f
+	go.opentelemetry.io/collector/semconv v0.72.0
 	go.uber.org/atomic v1.10.0
 	go.uber.org/multierr v1.9.0
 	go.uber.org/zap v1.24.0
