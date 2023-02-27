@@ -15,7 +15,7 @@ require (
 	github.com/shirou/gopsutil/v3 v3.23.1
 	github.com/signalfx/com_signalfx_metrics_protobuf v0.0.3
 	github.com/signalfx/signalfx-agent/pkg/apm v0.0.0-20220920175102-539ae8d8ba8e
-	github.com/stretchr/testify v1.8.1
+	github.com/stretchr/testify v1.8.2
 	go.opentelemetry.io/collector v0.70.1-0.20230207214007-faf5a578038f
 	go.opentelemetry.io/collector/component v0.70.1-0.20230207214007-faf5a578038f
 	go.opentelemetry.io/collector/confmap v0.70.1-0.20230207214007-faf5a578038f
