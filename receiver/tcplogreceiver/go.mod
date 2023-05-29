@@ -6,7 +6,7 @@ require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/pkg/stanza v0.77.0
 	github.com/stretchr/testify v1.8.2
 	go.opentelemetry.io/collector/component v0.77.0
-	go.opentelemetry.io/collector/confmap v0.77.0
+	go.opentelemetry.io/collector/confmap v0.78.2
 	go.opentelemetry.io/collector/consumer v0.77.0
 	go.opentelemetry.io/collector/receiver v0.77.0
 )
@@ -33,7 +33,7 @@ require (
 	go.opencensus.io v0.24.0 // indirect
 	go.opentelemetry.io/collector v0.77.0 // indirect
 	go.opentelemetry.io/collector/exporter v0.77.0 // indirect
-	go.opentelemetry.io/collector/featuregate v0.77.0 // indirect
+	go.opentelemetry.io/collector/featuregate v1.0.0-rcv0012 // indirect
 	go.opentelemetry.io/collector/pdata v1.0.0-rcv0011 // indirect
 	go.opentelemetry.io/otel v1.15.1 // indirect
 	go.opentelemetry.io/otel/metric v0.38.1 // indirect
@@ -42,7 +42,7 @@ require (
 	go.uber.org/multierr v1.11.0 // indirect
 	go.uber.org/zap v1.24.0 // indirect
 	golang.org/x/net v0.9.0 // indirect
-	golang.org/x/sys v0.7.0 // indirect
+	golang.org/x/sys v0.8.0 // indirect
 	golang.org/x/text v0.9.0 // indirect
 	gonum.org/v1/gonum v0.13.0 // indirect
 	google.golang.org/genproto v0.0.0-20230110181048-76db0878b65f // indirect
