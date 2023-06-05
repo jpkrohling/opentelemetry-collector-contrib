@@ -4,7 +4,7 @@ go 1.19
 
 require (
 	github.com/influxdata/influxdb-client-go/v2 v2.12.3
-	github.com/influxdata/influxdb-observability/common v0.3.8
+	github.com/influxdata/influxdb-observability/common v0.4.2
 	github.com/influxdata/influxdb-observability/influx2otel v0.3.8
 	github.com/influxdata/influxdb1-client v0.0.0-20220302092344-a9ab5670611c
 	github.com/influxdata/line-protocol/v2 v2.2.1
@@ -45,7 +45,7 @@ require (
 	github.com/rs/cors v1.9.0 // indirect
 	go.opentelemetry.io/collector/confmap v0.77.0 // indirect
 	go.opentelemetry.io/collector/featuregate v0.77.0 // indirect
-	go.opentelemetry.io/collector/semconv v0.77.0 // indirect
+	go.opentelemetry.io/collector/semconv v0.78.2 // indirect
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.41.1 // indirect
 	go.opentelemetry.io/otel v1.15.1 // indirect
 	go.opentelemetry.io/otel/metric v0.38.1 // indirect
