@@ -8,7 +8,7 @@ require (
 	go.opencensus.io v0.24.0
 	go.opentelemetry.io/collector v0.79.1-0.20230609201858-ed8547a8e5d6
 	go.opentelemetry.io/collector/component v0.79.1-0.20230609201858-ed8547a8e5d6
-	go.opentelemetry.io/collector/confmap v0.79.1-0.20230609201858-ed8547a8e5d6
+	go.opentelemetry.io/collector/confmap v0.80.0
 	go.opentelemetry.io/collector/consumer v0.79.1-0.20230609201858-ed8547a8e5d6
 	go.opentelemetry.io/collector/pdata v1.0.0-rcv0012.0.20230609201858-ed8547a8e5d6
 	go.opentelemetry.io/collector/processor v0.0.0-20230609193203-89d1060c7606
@@ -29,7 +29,7 @@ require (
 	github.com/modern-go/reflect2 v1.0.2 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	go.opentelemetry.io/collector/exporter v0.79.1-0.20230609201858-ed8547a8e5d6 // indirect
-	go.opentelemetry.io/collector/featuregate v1.0.0-rcv0012.0.20230609201858-ed8547a8e5d6 // indirect
+	go.opentelemetry.io/collector/featuregate v1.0.0-rcv0013 // indirect
 	go.opentelemetry.io/collector/receiver v0.79.1-0.20230609201858-ed8547a8e5d6 // indirect
 	go.opentelemetry.io/otel v1.16.0 // indirect
 	go.opentelemetry.io/otel/metric v1.16.0 // indirect
