@@ -4,6 +4,12 @@
 
 <!-- next version -->
 
+## v0.82.1
+
+### 🧰 Bug fixes 🧰
+
+- `processor/resourcedetection`: Do not drop all system attributes if `host.id` cannot be fetched. (#24669)
+
 ## v0.82.0
 
 ### 🛑 Breaking changes 🛑
