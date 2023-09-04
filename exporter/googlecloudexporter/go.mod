@@ -6,7 +6,7 @@ require (
 	github.com/GoogleCloudPlatform/opentelemetry-operations-go/exporter/collector v0.42.0
 	github.com/stretchr/testify v1.8.4
 	go.opentelemetry.io/collector/component v0.83.0
-	go.opentelemetry.io/collector/confmap v0.83.0
+	go.opentelemetry.io/collector/confmap v0.84.0
 	go.opentelemetry.io/collector/exporter v0.83.0
 	go.opentelemetry.io/collector/featuregate v1.0.0-rcv0014
 )
