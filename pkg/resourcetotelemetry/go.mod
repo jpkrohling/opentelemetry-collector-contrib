@@ -5,9 +5,9 @@ go 1.20
 require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal v0.85.0
 	github.com/stretchr/testify v1.8.4
-	go.opentelemetry.io/collector/consumer v0.85.0
+	go.opentelemetry.io/collector/consumer v0.86.0
 	go.opentelemetry.io/collector/exporter v0.85.0
-	go.opentelemetry.io/collector/pdata v1.0.0-rcv0014
+	go.opentelemetry.io/collector/pdata v1.0.0-rcv0015
 )
 
 require (
