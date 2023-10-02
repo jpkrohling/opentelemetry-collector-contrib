@@ -11,7 +11,7 @@ require (
 	go.opentelemetry.io/collector/confmap v0.85.0
 	go.opentelemetry.io/collector/consumer v0.85.0
 	go.opentelemetry.io/collector/exporter v0.85.0
-	go.opentelemetry.io/collector/pdata v1.0.0-rcv0014
+	go.opentelemetry.io/collector/pdata v1.0.0-rcv0015
 	go.uber.org/multierr v1.11.0
 	gopkg.in/natefinch/lumberjack.v2 v2.2.1
 )
