@@ -45,7 +45,7 @@ require (
 	go.opentelemetry.io/collector/extension v0.85.0
 	go.opentelemetry.io/collector/extension/ballastextension v0.85.0
 	go.opentelemetry.io/collector/extension/zpagesextension v0.85.0
-	go.opentelemetry.io/collector/pdata v1.0.0-rcv0014
+	go.opentelemetry.io/collector/pdata v1.0.0-rcv0015
 	go.opentelemetry.io/collector/processor v0.85.0
 	go.opentelemetry.io/collector/processor/batchprocessor v0.85.0
 	go.opentelemetry.io/collector/processor/memorylimiterprocessor v0.85.0
