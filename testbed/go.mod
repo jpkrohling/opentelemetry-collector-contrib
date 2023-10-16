@@ -45,7 +45,7 @@ require (
 	go.opentelemetry.io/collector/extension v0.85.0
 	go.opentelemetry.io/collector/extension/ballastextension v0.85.0
 	go.opentelemetry.io/collector/extension/zpagesextension v0.85.0
-	go.opentelemetry.io/collector/pdata v1.0.0-rcv0014
+	go.opentelemetry.io/collector/pdata v1.0.0-rcv0016
 	go.opentelemetry.io/collector/processor v0.85.0
 	go.opentelemetry.io/collector/processor/batchprocessor v0.85.0
 	go.opentelemetry.io/collector/processor/memorylimiterprocessor v0.85.0
@@ -260,7 +260,7 @@ require (
 	google.golang.org/genproto v0.0.0-20230803162519-f966b187b2e5 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20230822172742-b8732ec3820d // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20230911183012-2d3300fd4832 // indirect
-	google.golang.org/grpc v1.58.1 // indirect
+	google.golang.org/grpc v1.58.2 // indirect
 	google.golang.org/protobuf v1.31.0 // indirect
 	gopkg.in/inf.v0 v0.9.1 // indirect
 	gopkg.in/ini.v1 v1.67.0 // indirect
