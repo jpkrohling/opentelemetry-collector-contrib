@@ -12,7 +12,7 @@ require (
 	go.opentelemetry.io/collector v0.85.0
 	go.opentelemetry.io/collector/component v0.85.0
 	go.opentelemetry.io/collector/consumer v0.85.0
-	go.opentelemetry.io/collector/featuregate v1.0.0-rcv0014
+	go.opentelemetry.io/collector/featuregate v1.0.0-rcv0017
 	go.opentelemetry.io/collector/pdata v1.0.0-rcv0014
 	go.opentelemetry.io/collector/receiver v0.85.0
 	go.opentelemetry.io/collector/semconv v0.85.0
