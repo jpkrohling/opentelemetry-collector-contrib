@@ -4,11 +4,11 @@ go 1.20
 
 require (
 	github.com/basgys/goxml2json v1.1.0
-	github.com/google/go-cmp v0.5.9
+	github.com/google/go-cmp v0.6.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal v0.85.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/pkg/pdatatest v0.85.0
 	github.com/stretchr/testify v1.8.4
-	github.com/vmware/govmomi v0.30.7
+	github.com/vmware/govmomi v0.33.0
 	go.opentelemetry.io/collector/component v0.85.0
 	go.opentelemetry.io/collector/config/configopaque v0.85.0
 	go.opentelemetry.io/collector/config/configtls v0.85.0
