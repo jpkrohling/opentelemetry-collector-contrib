@@ -234,4 +234,7 @@ type Config struct {
 	// PolicyCfgs sets the tail-based sampling policy which makes a sampling decision
 	// for a given trace when requested.
 	PolicyCfgs []PolicyCfg `mapstructure:"policies"`
+
+	// CacheMaxSize is the maximum number of attribute entries in the decision cache
+	CacheMaxSize int `mapstructure:"cache_max_size"`
 }

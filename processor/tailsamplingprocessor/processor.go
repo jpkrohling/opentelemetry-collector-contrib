@@ -20,6 +20,8 @@ import (
 	"go.uber.org/zap"
 
 	"github.com/open-telemetry/opentelemetry-collector-contrib/internal/coreinternal/timeutils"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/tailsamplingprocessor/internal/cache"
+	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/tailsamplingprocessor/internal/cache/buffer"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/tailsamplingprocessor/internal/idbatcher"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/tailsamplingprocessor/internal/sampling"
 	"github.com/open-telemetry/opentelemetry-collector-contrib/processor/tailsamplingprocessor/internal/telemetry"
@@ -51,6 +53,9 @@ type tailSamplingSpanProcessor struct {
 	decisionBatcher idbatcher.Batcher
 	deleteChan      chan pcommon.TraceID
 	numTracesOnMap  *atomic.Uint64
+
+	// decision cache
+	cache cache.Cache[pcommon.TraceID, sampling.Decision]
 }
 
 // spanAndScope a structure for holding information about span and its instrumentation scope.
@@ -113,6 +118,7 @@ func newTracesProcessor(ctx context.Context, settings component.TelemetrySetting
 		tickerFrequency: time.Second,
 		numTracesOnMap:  &atomic.Uint64{},
 		T:               telemetry,
+		cache:           buffer.NewCircularBufferCache[pcommon.TraceID, sampling.Decision](cfg.CacheMaxSize),
 	}
 
 	tsp.policyTicker = &timeutils.PolicyTicker{OnTickFunc: tsp.samplingPolicyOnTick}
@@ -225,6 +231,11 @@ func (tsp *tailSamplingSpanProcessor) samplingPolicyOnTick() {
 }
 
 func (tsp *tailSamplingSpanProcessor) makeDecision(id pcommon.TraceID, trace *sampling.TraceData, metrics *policyMetrics) (sampling.Decision, *policy) {
+	// Check the cache first
+	if decision, ok := tsp.cache.Get(id); ok {
+		return decision, nil
+	}
+
 	finalDecision := sampling.NotSampled
 	var matchingPolicy *policy
 	samplingDecision := map[sampling.Decision]bool{
@@ -293,6 +304,10 @@ func (tsp *tailSamplingSpanProcessor) makeDecision(id pcommon.TraceID, trace *sa
 			metrics.decisionNotSampled++
 		}
 	}
+
+	// Cache the decision
+	tsp.cache.Set(id, finalDecision)
+
 	return finalDecision, matchingPolicy
 }
 
