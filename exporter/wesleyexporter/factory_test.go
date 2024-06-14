@@ -12,7 +12,7 @@ import (
 func TestExporter_new(t *testing.T) {
 	t.Run("with valid config", func(t *testing.T) {
 		cfg := &Config{}
-		exp, err := newExporter(cfg)
+		exp, err := newWesleyExporter(cfg)
 		require.NoError(t, err)
 		require.NotNil(t, exp)
 	})

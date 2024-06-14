@@ -1,1 +1,13 @@
-wesley:
+wesley/provided:
+  bla: 1
+  foo: 2
+
+wesley/defaults:
+  bla: 2
+  foo: 3
+  bar: 4
+
+wesley/effective:
+  bla: 1
+  foo: 2
+  bar: 4

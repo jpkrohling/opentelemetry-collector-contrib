@@ -8,6 +8,7 @@ import (
 
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/exporter"
+	"go.opentelemetry.io/collector/exporter/exporterhelper"
 
 	"github.com/open-telemetry/opentelemetry-collector-contrib/exporter/wesleyexporter/internal/metadata"
 )
@@ -22,9 +23,17 @@ func NewFactory() exporter.Factory {
 }
 
 func createDefaultConfig() component.Config {
-	return &Config{}
+	return &Config{
+		Bar: 1,
+		Foo: 2,
+		Bla: 3,
+	}
 }
 
 func createTracesExporter(ctx context.Context, set exporter.Settings, cfg component.Config) (exporter.Traces, error) {
-	return nil, nil
+	we, err := newWesleyExporter(cfg.(*Config))
+	if err != nil {
+		return nil, err
+	}
+	return exporterhelper.NewTracesExporter(ctx, set, cfg, we.consumeTraces)
 }

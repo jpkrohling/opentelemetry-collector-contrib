@@ -5,6 +5,9 @@ package wesleyexporter // import "github.com/open-telemetry/opentelemetry-collec
 
 // Config defines configuration for Loki exporter.
 type Config struct {
+	Foo int `mapstructure:"foo"`
+	Bar int `mapstructure:"bar"`
+	Bla int `mapstructure:"bla"`
 }
 
 func (c *Config) Validate() error {

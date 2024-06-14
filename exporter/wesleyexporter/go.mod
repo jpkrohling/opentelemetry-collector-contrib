@@ -17,6 +17,7 @@ require (
 
 require (
 	github.com/beorn7/perks v1.0.1 // indirect
+	github.com/cenkalti/backoff/v4 v4.3.0 // indirect
 	github.com/cespare/xxhash/v2 v2.3.0 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/go-logr/logr v1.4.1 // indirect
@@ -37,7 +38,10 @@ require (
 	github.com/prometheus/client_model v0.6.1 // indirect
 	github.com/prometheus/common v0.54.0 // indirect
 	github.com/prometheus/procfs v0.15.0 // indirect
+	go.opentelemetry.io/collector v0.102.1 // indirect
+	go.opentelemetry.io/collector/config/configretry v0.102.1 // indirect
 	go.opentelemetry.io/collector/consumer v0.102.2-0.20240611143128-7dfb57b9ad1c // indirect
+	go.opentelemetry.io/collector/extension v0.102.1 // indirect
 	go.opentelemetry.io/collector/receiver v0.102.2-0.20240611143128-7dfb57b9ad1c // indirect
 	go.opentelemetry.io/otel v1.27.0 // indirect
 	go.opentelemetry.io/otel/exporters/prometheus v0.49.0 // indirect
