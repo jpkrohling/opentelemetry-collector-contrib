@@ -1,0 +1,20 @@
+type: wesley
+scope_name: otelcol/wesley
+
+status:
+  class: exporter
+  stability:
+    development: [traces]
+  distributions:
+  - contrib
+  codeowners:
+    active: [jpkrohling, wesleyreis1808]
+
+telemetry:
+  metrics:
+    wesleyexporter_queue_length:
+      enabled: true
+      description: Length of the worker queue
+      unit: "{length}"
+      gauge:
+        value_type: int
