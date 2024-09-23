@@ -20,20 +20,20 @@ env:
 jobs:
   setup-environment:
     timeout-minutes: 30
-    runs-on: self-hosted
+    runs-on: blacksmith-8vcpu-ubuntu-2204
     if: ${{ github.actor != 'dependabot[bot]' }}
     outputs:
       loadtest_matrix: ${{ steps.splitloadtest.outputs.loadtest_matrix }}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
+      - uses: useblacksmith/setup-go@v6
         with:
           go-version: "1.22.7"
           cache: false
       - name: Cache Go
         id: go-cache
         timeout-minutes: 5
-        uses: actions/cache@v4
+        uses: useblacksmith/cache@v5
         with:
           path: |
             ~/go/bin
@@ -57,21 +57,21 @@ jobs:
         run: ./.github/workflows/scripts/setup_e2e_tests.sh
 
   loadtest:
-    runs-on: self-hosted
+    runs-on: blacksmith-8vcpu-ubuntu-2204
     needs: [setup-environment]
     strategy:
       fail-fast: false
       matrix: ${{ fromJson(needs.setup-environment.outputs.loadtest_matrix) }}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
+      - uses: useblacksmith/setup-go@v6
         with:
           go-version: "1.22.7"
           cache: false
       - name: Cache Go
         id: go-cache
         timeout-minutes: 5
-        uses: actions/cache@v4
+        uses: useblacksmith/cache@v5
         with:
           path: |
             ~/go/bin
@@ -118,7 +118,7 @@ jobs:
           path: testbed/tests/results/${{steps.filename.outputs.name}}.json
 
   update-benchmarks:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     needs: [loadtest]
     if: github.event_name != 'pull_request'
     steps:

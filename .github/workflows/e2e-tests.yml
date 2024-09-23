@@ -19,19 +19,19 @@ env:
   SEGMENT_DOWNLOAD_TIMEOUT_MINS: 2
 jobs:
   collector-build:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
+      - uses: useblacksmith/setup-go@v6
         with:
           go-version: "1.22.7"
           cache: false
       - name: Cache Go
         id: go-cache
         timeout-minutes: 5
-        uses: actions/cache@v4
+        uses: useblacksmith/cache@v5
         with:
           path: |
             ~/go/bin
@@ -49,18 +49,18 @@ jobs:
           path: ./bin/*
 
   supervisor-test:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     needs: collector-build
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
+      - uses: useblacksmith/setup-go@v6
         with:
           go-version: "1.22.7"
           cache: false
       - name: Cache Go
         id: go-cache
         timeout-minutes: 5
-        uses: actions/cache@v4
+        uses: useblacksmith/cache@v5
         with:
           path: |
             ~/go/bin
@@ -81,18 +81,18 @@ jobs:
           go test -v --tags=e2e
 
   docker-build:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
+      - uses: useblacksmith/setup-go@v6
         with:
           go-version: "1.22.7"
           cache: false
       - name: Cache Go
         id: go-cache
         timeout-minutes: 5
-        uses: actions/cache@v4
+        uses: useblacksmith/cache@v5
         with:
           path: |
             ~/go/bin
@@ -127,18 +127,18 @@ jobs:
           - processor/k8sattributesprocessor
           - receiver/kubeletstatsreceiver
           - receiver/k8sobjectsreceiver
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     needs: docker-build
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
+      - uses: useblacksmith/setup-go@v6
         with:
           go-version: "1.22.7"
           cache: false
       - name: Cache Go
         id: go-cache
         timeout-minutes: 5
-        uses: actions/cache@v4
+        uses: useblacksmith/cache@v5
         with:
           path: |
             ~/go/bin
@@ -175,7 +175,7 @@ jobs:
 
   kubernetes-test:
     if: ${{ github.actor != 'dependabot[bot]' && always() }}
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     needs: [kubernetes-test-matrix]
     steps:
       - name: Print result

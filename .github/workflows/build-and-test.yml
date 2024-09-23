@@ -20,18 +20,18 @@ concurrency:
 jobs:
   setup-environment:
     timeout-minutes: 30
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     if: ${{ github.actor != 'dependabot[bot]' }}
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
+      - uses: useblacksmith/setup-go@v6
         with:
           go-version: "1.22.7"
           cache: false
       - name: Cache Go
         id: go-cache
         timeout-minutes: 5
-        uses: actions/cache@v4
+        uses: useblacksmith/cache@v5
         with:
           path: |
             ~/go/bin
@@ -44,14 +44,14 @@ jobs:
         if: steps.go-cache.outputs.cache-hit != 'true'
         run: make install-tools
   check-collector-module-version:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     needs: [setup-environment]
     steps:
       - uses: actions/checkout@v4
       - name: Check Collector Module Version
         run: ./.github/workflows/scripts/check-collector-module-version.sh
   check-codeowners:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     needs: [setup-environment]
     steps:
       - uses: actions/checkout@v4
@@ -86,18 +86,18 @@ jobs:
           - cmd-0
           - cmd-1
           - other
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     needs: [setup-environment]
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
+      - uses: useblacksmith/setup-go@v6
         with:
           go-version: "1.22.7"
           cache: false
       - name: Cache Go
         id: go-cache
         timeout-minutes: 5
-        uses: actions/cache@v4
+        uses: useblacksmith/cache@v5
         with:
           path: |
             ~/go/bin
@@ -110,7 +110,7 @@ jobs:
         if: steps.go-cache.outputs.cache-hit != 'true'
         run: make install-tools
       - name: Cache Lint Build
-        uses: actions/cache@v4
+        uses: useblacksmith/cache@v5
         with:
           path: ~/.cache/go-build
           key: go-lint-build-${{ matrix.group }}-${{ runner.os }}-${{ hashFiles('**/go.sum') }}
@@ -118,7 +118,7 @@ jobs:
         run: GOOS=${{ matrix.goos }} GOARCH=amd64 make -j2 golint GROUP=${{ matrix.group }}
   lint:
     if: ${{ github.actor != 'dependabot[bot]' && always() }}
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     needs: [setup-environment, lint-matrix]
     steps:
       - name: Print result
@@ -153,20 +153,20 @@ jobs:
           - pkg
           - cmd-0
           - cmd-1
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     timeout-minutes: 30
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v4
       - name: Setup Go
-        uses: actions/setup-go@v5
+        uses: useblacksmith/setup-go@v6
         with:
           go-version: "1.22.7"
           cache: false
       - name: Cache Go
         id: go-cache
         timeout-minutes: 5
-        uses: actions/cache@v4
+        uses: useblacksmith/cache@v5
         with:
           path: |
             ~/go/bin
@@ -178,18 +178,18 @@ jobs:
       - name: Run `govulncheck`
         run: make -j2 gogovulncheck GROUP=${{ matrix.group }}
   checks:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     needs: [setup-environment]
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
+      - uses: useblacksmith/setup-go@v6
         with:
           go-version: "1.22.7"
           cache: false
       - name: Cache Go
         id: go-cache
         timeout-minutes: 5
-        uses: actions/cache@v4
+        uses: useblacksmith/cache@v5
         with:
           path: |
             ~/go/bin
@@ -254,7 +254,7 @@ jobs:
       fail-fast: false
       matrix:
         go-version: ["1.23.0", "1.22.7"] # 1.20 is interpreted as 1.2 without quotes
-        runner: [ubuntu-latest]
+        runner: [blacksmith-4vcpu-ubuntu-2204]
         group:
           - receiver-0
           - receiver-1
@@ -277,14 +277,14 @@ jobs:
     needs: [setup-environment]
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
+      - uses: useblacksmith/setup-go@v6
         with:
           go-version: ${{ matrix.go-version }}
           cache: false
       - name: Cache Go
         id: go-cache
         timeout-minutes: 5
-        uses: actions/cache@v4
+        uses: useblacksmith/cache@v5
         with:
           path: |
             ~/go/bin
@@ -297,7 +297,7 @@ jobs:
         if: steps.go-cache.outputs.cache-hit != 'true'
         run: make install-tools
       - name: Cache Test Build
-        uses: actions/cache@v4
+        uses: useblacksmith/cache@v5
         with:
           path: ~/.cache/go-build
           key: go-test-build-${{ runner.os }}-${{ matrix.go-version }}-${{ matrix.runner }}-${{ hashFiles('**/go.sum') }}
@@ -314,7 +314,7 @@ jobs:
           path: ${{ matrix.group }}-coverage.txt
   unittest:
     if: ${{ github.actor != 'dependabot[bot]' && always() }}
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     needs: [setup-environment, unittest-matrix]
     steps:
       - name: Print result
@@ -329,7 +329,7 @@ jobs:
             false
           fi
   coverage:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     needs: [unittest]
     steps:
       - uses: actions/checkout@v4
@@ -363,18 +363,18 @@ jobs:
           - pkg
           - cmd-0
           - cmd-1
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     needs: [setup-environment]
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
+      - uses: useblacksmith/setup-go@v6
         with:
           go-version: "1.22.7"
           cache: false
       - name: Cache Go
         id: go-cache
         timeout-minutes: 5
-        uses: actions/cache@v4
+        uses: useblacksmith/cache@v5
         with:
           path: |
             ~/go/bin
@@ -385,7 +385,7 @@ jobs:
 
   integration-tests:
     if: ${{ github.actor != 'dependabot[bot]' && always() }}
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     needs: [setup-environment, integration-tests-matrix]
     steps:
       - name: Print result
@@ -401,18 +401,18 @@ jobs:
           fi
 
   correctness-traces:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     needs: [setup-environment]
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
+      - uses: useblacksmith/setup-go@v6
         with:
           go-version: "1.22.7"
           cache: false
       - name: Cache Go
         id: go-cache
         timeout-minutes: 5
-        uses: actions/cache@v4
+        uses: useblacksmith/cache@v5
         with:
           path: |
             ~/go/bin
@@ -427,18 +427,18 @@ jobs:
       - name: Correctness
         run: make -C testbed run-correctness-traces-tests
   correctness-metrics:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     needs: [setup-environment]
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
+      - uses: useblacksmith/setup-go@v6
         with:
           go-version: "1.22.7"
           cache: false
       - name: Cache Go
         id: go-cache
         timeout-minutes: 5
-        uses: actions/cache@v4
+        uses: useblacksmith/cache@v5
         with:
           path: |
             ~/go/bin
@@ -454,7 +454,7 @@ jobs:
         run: make -C testbed run-correctness-metrics-tests
 
   build-examples:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     needs: [setup-environment]
     steps:
       - uses: actions/checkout@v4
@@ -462,7 +462,7 @@ jobs:
         run: make build-examples
 
   cross-compile:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     needs: [setup-environment]
     strategy:
       fail-fast: false
@@ -501,14 +501,14 @@ jobs:
             arch: s390x
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
+      - uses: useblacksmith/setup-go@v6
         with:
           go-version: "1.22.7"
           cache: false
       - name: Cache Go
         id: go-cache
         timeout-minutes: 5
-        uses: actions/cache@v4
+        uses: useblacksmith/cache@v5
         with:
           path: |
             ~/go/bin
@@ -529,7 +529,7 @@ jobs:
           path: ./bin/*
 
   build-package:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     needs: [cross-compile]
     strategy:
       fail-fast: false
@@ -540,7 +540,7 @@ jobs:
         with:
           fetch-depth: 0
       - name: Install Ruby
-        uses: ruby/setup-ruby@v1
+        uses: useblacksmith/setup-ruby@v2
         with:
           ruby-version: "3.3"
       - name: Install fpm
@@ -577,7 +577,7 @@ jobs:
           path: ./dist/*
 
   publish-check:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     needs: [lint, unittest, integration-tests, build-package]
     steps:
       - uses: actions/checkout@v4
@@ -597,12 +597,12 @@ jobs:
         id: check
         run: ./.github/workflows/scripts/verify-dist-files-exist.sh
   publish-dev:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     needs: [lint, unittest, integration-tests, build-package]
     if: (github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/v')) && github.repository == 'open-telemetry/opentelemetry-collector-contrib'
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
+      - uses: useblacksmith/setup-go@v6
         with:
           go-version: "1.22.7"
           cache: false
@@ -612,7 +612,7 @@ jobs:
       - name: Cache Go
         id: go-cache
         timeout-minutes: 5
-        uses: actions/cache@v4
+        uses: useblacksmith/cache@v5
         with:
           path: |
             ~/go/bin
@@ -664,7 +664,7 @@ jobs:
           docker push otel/opentelemetry-collector-contrib-dev:$GITHUB_SHA
           docker push otel/opentelemetry-collector-contrib-dev:latest
   publish-stable:
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     needs: [lint, unittest, integration-tests, build-package]
     if: startsWith(github.ref, 'refs/tags/v') && github.repository == 'open-telemetry/opentelemetry-collector-contrib'
     steps:
@@ -682,7 +682,7 @@ jobs:
     # This job updates the "next release" milestone
     # to the latest released version and creates a new milestone
     # named "next release" in its place
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     needs: [publish-stable]
     if: startsWith(github.ref, 'refs/tags/v') && github.repository == 'open-telemetry/opentelemetry-collector-contrib'
     steps:

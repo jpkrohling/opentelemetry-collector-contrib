@@ -13,20 +13,20 @@ env:
 jobs:
   setup-environment:
     timeout-minutes: 30
-    runs-on: ubuntu-latest
+    runs-on: blacksmith-4vcpu-ubuntu-2204
     if: ${{ !contains(github.event.pull_request.labels.*.name, 'dependency-major-update') && (github.actor == 'renovate[bot]' || contains(github.event.pull_request.labels.*.name, 'renovatebot')) }}
     steps:
       - uses: actions/checkout@v4
         with:
           ref: ${{ github.head_ref }}
-      - uses: actions/setup-go@v5
+      - uses: useblacksmith/setup-go@v6
         with:
           go-version: "1.22.7"
           cache: false
       - name: Cache Go
         id: go-cache
         timeout-minutes: 5
-        uses: actions/cache@v4
+        uses: useblacksmith/cache@v5
         with:
           path: |
             ~/go/bin
