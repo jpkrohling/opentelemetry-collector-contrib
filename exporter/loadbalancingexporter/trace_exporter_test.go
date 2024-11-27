@@ -878,18 +878,6 @@ func serviceBasedRoutingConfig() *Config {
 	}
 }
 
-func attrBasedRoutingConfig(attrs []string) *Config {
-	return &Config{
-		Resolver: ResolverSettings{
-			Static: &StaticResolver{
-				Hostnames: []string{"endpoint-1", "endpoint-2", "endpoint-3", "endpoint-4"},
-			},
-		},
-		RoutingKey:        "attributes",
-		RoutingAttributes: attrs,
-	}
-}
-
 type mockTracesExporter struct {
 	component.Component
 	ConsumeTracesFn func(ctx context.Context, td ptrace.Traces) error

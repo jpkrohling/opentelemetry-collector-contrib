@@ -147,7 +147,7 @@ func (e *traceExporterImp) ConsumeTraces(ctx context.Context, td ptrace.Traces) 
 // ring hash. It takes the routingKey, defining what type of routing should be used, and a series of attributes
 // (optionally) used if the routingKey is attrRouting.
 //
-// only svcRouting and attrRouting are supported. For attrRouting, any attribute, as well the "psuedo" attributes span.name
+// only svcRouting and attrRouting are supported. For attrRouting, any attribute, as well the "pseudo" attributes span.name
 // and span.kind are supported.
 //
 // In practice, makes the assumption that ptrace.Traces includes only one trace of each kind, in the "trace tree".
@@ -193,7 +193,6 @@ func routingIdentifiersFromTraces(td ptrace.Traces, rType routingKey, attrs []st
 		var rKey strings.Builder
 
 		for _, a := range attrs {
-
 			// resource spans
 			rAttr, ok := rs.At(i).Resource().Attributes().Get(a)
 			if ok {
